@@ -4,6 +4,12 @@
     tomcat_base_name: apache-tomcat-{{ tomcat_version }}
         
   tasks:
+    - name: ensure group vagrant exists
+      group: name=vagrant state=present
+          
+    - name: ensure user vagrant exists
+      user: name=vagrant group=vagrant state=present
+  
     - name: install java
       apt: name=openjdk-8-jdk state=present
       become: yes
