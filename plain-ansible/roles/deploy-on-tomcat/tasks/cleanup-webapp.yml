@@ -1,2 +1,0 @@
-- name: cleanup {{ webapp_target_name }}
-  file: name={{tomcat_app_base}}/{{ webapp_target_name }} state=absent
