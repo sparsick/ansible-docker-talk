@@ -1,0 +1,11 @@
+FROM williamyeh/ansible:ubuntu16.04
+
+WORKDIR /tmp
+COPY plain-ansible/*  /tmp/
+
+RUN echo database-server > inventory
+RUN ansible-playbook -i inventory setup-db.yml --connection=local
+
+USER mysql
+ENTRYPOINT ["/usr/bin/mysqld_safe"]
+EXPOSE 3306
