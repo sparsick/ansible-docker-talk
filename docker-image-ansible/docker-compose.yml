@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: "sparsick/mysql:ansible"
+  tomcat:
+    image: sparsick/tomcat:ansible
+    ports:
+     - "8080:8080"
+    links: 
+     - database
+    volumes:
+     - ./plain-ansible/demo-web-application-1.war:/opt/tomcat/webapps/demo.war
+ 
