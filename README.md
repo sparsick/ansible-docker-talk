@@ -1,11 +1,12 @@
-# anible-docker-objektspektrum
+# anible-docker-talk
+You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein - IT Automation, die zu einem passt" that I presented on Softwerkskammer Ruhrgebiet in Dortmund at 21st June 2017.
 
 
 ## Running the Code Samples
 The code samples are tested with Ansible 2.3.0.0, Docker 17.04.0-ce and Docker Compose 1.11.2.
 
 ### Setup Test Infrastructure
-I prepare some Vagrantfile for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
+I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
 
 1. Open a CLI and go to the location of the file `Vagrantfile`.
 2. Call `vagrant up`. Vagrant will download the necessary image for VirtualBox. That will take some times.
