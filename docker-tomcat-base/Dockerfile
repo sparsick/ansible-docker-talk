@@ -1,13 +1,12 @@
 FROM ubuntu:16.04
 
-ADD ./apache-tomcat-8.5.11.tar.gz /opt/
-    
 RUN apt-get update -y && \
-    apt-get install openjdk-8-jre -y && \
-    apt-get clean && \
-    apt-get autoclean && \
-    apt-get autoremove -y  && \
-    ln -s /opt/apache-tomcat-8.5.11 /opt/tomcat85
+    apt-get install openjdk-8-jre curl -y && \
+    curl http://ftp.halifax.rwth-aachen.de/apache/tomcat/tomcat-8/v8.5.12/bin/apache-tomcat-8.5.12.tar.gz -o /opt/tomcat.tar.gz && \
+    tar -xf /opt/tomcat.tar.gz -C /opt && \ 
+    rm -f /opt/tomcat.tar.gz && \
+    ln -s /opt/apache-tomcat-8.5.12 /opt/tomcat85 && \
+    apt-get remove curl -y
 
 ENV CATALINA_HOME /opt/tomcat85
 ENV PATH $CATALINA_HOME/bin:$PATH
