@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>Demo Application</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+</head>
+<body>
+	<div id="hd">
+		<div id="logo">
+			<h1>Demo Application</h1>
+		</div>
+	</div>
+	<div id="bd">
+		<h3>Our Person List</h3>
+		<table>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+                                <th>Job Title</th>
+			</tr>
+			<tr wicket:id="personList">
+				<td><span wicket:id="firstname">First name</span></td>
+				<td><span wicket:id="lastname">Last name</span></td>
+                                <td><span wicket:id="jobtitle">Job title</span></td>
+			</tr>
+		</table>
+
+		<h3>New Person</h3>
+		<form wicket:id="newPersonForm">
+			First Name: <input type="text" wicket:id="firstName" value="First name" size="50" /><br>
+			Last Name: <input type="text" wicket:id="lastName" value="Last name" size="50"/><br>
+                        Job Title: <input type="text" wicket:id="jobTitle" value="Job title" size="50"/><br>
+			<input wicket:id="submitButton" type="submit" value="Add new person" />
+		</form>
+	</div>
+	<div id="ft"></div>
+</body>
+</html>

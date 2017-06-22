@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.github.sparsick.ansible.docker.demo.webapp"/>
+
+    <bean id="wicketApplication" class="com.github.sparsick.ansible.docker.demo.webapp.WicketApplication"/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="url" value="jdbc:mysql://database:3306/flyway_demo" />
+        <property name="username" value="flyway" />
+        <property name="password" value="flyway" />
+    </bean>
+    
+    <bean id="flyway" class="org.flywaydb.core.Flyway">
+        <property name="dataSource">
+            <bean class="org.apache.commons.dbcp.BasicDataSource" parent="dataSource">
+                <property name="url" value="jdbc:mysql://database:3306"/>
+            </bean>
+        </property>
+        <property name="schemas">
+            <list>
+                <value>flyway_demo</value>
+            </list>
+        </property>
+    </bean>
+</beans>
