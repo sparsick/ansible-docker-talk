@@ -1,0 +1,29 @@
+- hosts: application-server
+
+  tasks:
+    - name:
+      file: name=/opt mode=777
+      become: yes
+      become_method: sudo
+
+    - name:  prepare webapp location
+      file: path="/opt/webapps" state="directory" owner=vagrant group=vagrant
+
+    - name: copy java webapp archive
+      copy: src="./demo-web-application-1.war" dest="/opt/webapps/demo-web-application-1.war" owner=vagrant group=vagrant
+
+    - docker_service:
+        project_name: java_web
+        definition:
+          version: '2'
+          services:
+            database:
+              image: "localhost:5000/sparsick/mysql:ansible"
+            tomcat:
+              image: localhost:5000/sparsick/tomcat:ansible
+              ports:
+               - "8080:8080"
+              links:
+               - database
+              volumes:
+               - /opt/webapps/demo-web-application-1.war:/opt/tomcat/webapps/demo.war
