@@ -1,0 +1,15 @@
+FROM williamyeh/ansible:ubuntu16.04
+
+WORKDIR /tmp
+COPY plain-ansible/*  /tmp/
+
+RUN echo application-server > inventory
+RUN ansible-playbook -i inventory setup-app.yml --connection=local
+
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+WORKDIR $CATALINA_HOME 
+
+ENTRYPOINT [ "catalina.sh"]  
+CMD ["run"]
+EXPOSE 8080
