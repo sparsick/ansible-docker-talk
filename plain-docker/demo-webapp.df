@@ -1,0 +1,6 @@
+FROM tomcat85:latest
+
+COPY ./demo.war /opt/tomcat85/webapps
+
+ENTRYPOINT ["catalina.sh"]
+CMD ["run"]
