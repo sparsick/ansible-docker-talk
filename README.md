@@ -40,16 +40,14 @@ There exists three playbooks for setting up a database, installing Apache Tomcat
 
 
 ### Docker Image lifecycle mit ansible
+Create or modify /etc/docker/daemon.json
+{ "insecure-registries":["myregistry.example.com:5000"] }
+Restart docker daemon
+sudo service docker restart
 
+ `docker pull localhost:5000/sparsick/tomcat:plain`
 
-    Create or modify /etc/docker/daemon.json
-    { "insecure-registries":["myregistry.example.com:5000"] }
-    Restart docker daemon
-    sudo service docker restart
-Test auf der Vagrant machine `docker pull localhost:5000/sparsick/tomcat:plain`
-oder `curl -s http://192.168.33.11:5000/v2/sparsick/tomcat/tags/list` tag ansible
-
-oder `curl -s http://localhost:5000/v2/sparsick/tomcat/tags/list` tag plain
+oder `curl -s http://localhost:5000/v2/sparsick/tomcat/tags/list` tag plain bzw tag ansible
 
 Precondition:
 apt-get install python-docker
