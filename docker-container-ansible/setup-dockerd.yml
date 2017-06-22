@@ -2,7 +2,6 @@
   become: yes
   become_method: sudo
 
-
   tasks:
     - name: ensure group vagrant exists
       group: name=vagrant state=present
@@ -16,11 +15,10 @@
         - apt-transport-https
         - ca-certificates
         - software-properties-common
+        - python-docker
 
     - name: add Docker's official GPG key
       apt_key: url="http://apt.dockerproject.org/gpg" state=present
-
-      # fingerprint check?
 
     - name: add Docker's repository
       apt_repository: repo="deb https://apt.dockerproject.org/repo/ ubuntu-xenial main" update_cache=yes

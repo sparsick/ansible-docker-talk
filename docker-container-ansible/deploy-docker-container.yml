@@ -1,0 +1,31 @@
+- hosts: application-server
+
+  tasks:
+    - name: start database container
+      docker_container:
+        name: database
+        image: localhost:5000/sparsick/mysql:ansible
+        state: started
+
+    - name:
+      file: name=/opt mode=777
+      become: yes
+      become_method: sudo
+
+    - name:  prepare webapp location
+      file: path="/opt/webapps" state="directory" owner=vagrant group=vagrant
+
+    - name: copy java webapp archive
+      copy: src="./demo-web-application-1.war" dest="/opt/webapps/demo-web-application-1.war" owner=vagrant group=vagrant
+
+    - name: start tomcat container
+      docker_container:
+        name: tomcat
+        image: localhost:5000/sparsick/tomcat:ansible
+        state: started
+        volumes:
+          - "/opt/webapps/demo-web-application-1.war:/opt/tomcat/webapps/demo.war"
+        links:
+          - "database"
+        ports:
+          - "8080:8080"

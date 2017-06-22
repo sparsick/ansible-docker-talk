@@ -1,0 +1,18 @@
+- hosts: application-server
+  become: yes
+  become_method: sudo
+  
+  tasks:
+  - name: install latest Docker Engine
+    apt: name="docker-engine"
+
+  - name: add user vagrant to group docker
+    user: name=vagrant groups=docker state=present
+
+  - name: start docker registry
+    docker_container:
+      name: registry
+      image: registry:2
+      state: started
+      ports:
+        - "5000:5000"
