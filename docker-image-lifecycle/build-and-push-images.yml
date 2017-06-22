@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+    - name: build and push tomcat image
+      docker_image:
+        name: sparsick/tomcat
+        dockerfile: tomcat.df
+        path: "{{ playbook_dir }}/../docker-image-ansible"
+        push: yes
+        repository: 192.168.33.11:5000/sparsick/tomcat:plain
