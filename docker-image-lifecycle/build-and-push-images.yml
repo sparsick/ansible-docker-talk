@@ -1,4 +1,6 @@
 - hosts: localhost
+  vars:
+    registry_hostname: localhost
   tasks:
     - name: build and push tomcat image
       docker_image:
@@ -6,4 +8,12 @@
         dockerfile: tomcat.df
         path: "{{ playbook_dir }}/../docker-image-ansible"
         push: yes
-        repository: 192.168.33.11:5000/sparsick/tomcat:plain
+        repository: "{{ registry_hostname }}:5000/sparsick/tomcat:ansible"
+
+    - name: build and push mysql image
+      docker_image:
+        name: sparsick/mysql
+        dockerfile: mysql.df
+        path: "{{ playbook_dir }}/../docker-image-ansible"
+        push: yes
+        repository: "{{ registry_hostname }}:5000/sparsick/mysql:ansible"

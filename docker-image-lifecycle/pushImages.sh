@@ -1,8 +1,8 @@
  #!/bin/sh
-docker tag sparsick/mysql:ansible 192.168.33.11:5000/sparsick/mysql:ansible
-docker push 192.168.33.11:5000/sparsick/mysql:ansible
+docker tag sparsick/mysql:ansible localhost:5000/sparsick/mysql:plain
+docker push localhost:5000/sparsick/mysql:plain
 
-docker tag sparsick/tomcat:ansible 192.168.33.11:5000/sparsick/tomcat:ansible
-docker push 192.168.33.11:5000/sparsick/tomcat:ansible
+docker tag sparsick/tomcat:ansible localhost:5000/sparsick/tomcat:plain
+docker push localhost:5000/sparsick/tomcat:plain
 
-# check go vagrant machine and call 
+# check go vagrant machine and call
