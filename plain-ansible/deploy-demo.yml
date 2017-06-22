@@ -1,3 +1,3 @@
 - hosts: application-server
   roles:
-    - {role: deploy-on-tomcat, webapp_source_path: ./demo-app-ansible-deploy-1.0-SNAPSHOT.war, webapp_target_name: demo }
+    - {role: deploy-on-tomcat, webapp_source_path: ./demo-web-application-1.war, webapp_target_name: demo }

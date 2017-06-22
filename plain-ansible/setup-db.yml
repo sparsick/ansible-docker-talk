@@ -20,7 +20,7 @@
       notify: restart mysql
       
     - name: creates db user dba
-      mysql_user: name=dba password=g3h31m priv=*.*:ALL,GRANT state=present host=%
+      mysql_user: name=flyway password=flyway priv=*.*:ALL,GRANT state=present host=%
       
   handlers:
      - name: restart mysql
