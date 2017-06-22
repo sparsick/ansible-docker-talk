@@ -17,3 +17,4 @@
         path: "{{ playbook_dir }}/../docker-image-ansible"
         push: yes
         repository: "{{ registry_hostname }}:5000/sparsick/mysql:ansible"
+# check if image is really pushed in repository

@@ -1,1 +1,3 @@
 /java-webapp/target/
+*.retry
+.vagrant/
