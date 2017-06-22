@@ -1,0 +1,5 @@
+[application-server]
+192.168.33.10 
+
+[database-server]
+192.168.33.10 

@@ -1,0 +1,7 @@
+- name: stop tomcat
+  service: name=tomcat state=stopped
+  become: true
+  become_method: sudo
+  
+- name: wait tomcat shutdown
+  wait_for: port=8080 state=stopped timeout=60

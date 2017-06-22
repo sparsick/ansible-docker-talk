@@ -1,0 +1,4 @@
+- include: stop-tomcat.yml
+- include: cleanup-webapp.yml
+- include: deploy-webapp.yml
+- include: start-tomcat.yml
