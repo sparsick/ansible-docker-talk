@@ -1,5 +1,5 @@
 # anible-docker-talk
-You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein - IT Automation, die zu einem passt" that I presented on Softwerkskammer Ruhrgebiet in Dortmund at 21st June 2017.
+You can find here the slides and the sample code of my talk "Muss es immer Docker sein?" that I presented on Java Forum Stuttgart at 6th July 2017.
 
 
 ## Running the Code Samples
