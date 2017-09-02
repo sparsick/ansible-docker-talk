@@ -1,3 +1,4 @@
 /java-webapp/target/
 *.retry
 .vagrant/
+/java-webapp/nbproject/

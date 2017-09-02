@@ -59,3 +59,8 @@ These examples show how to install Docker, Docker Compose and Docker registry wi
 4. Call `ansible-playbook -i inventories/test -u vagrant ../docker-image-lifecycle/build-and-push-images.yml --extra-vars "registry_hostname=192.168.33.11"` for pushing images to Docker registry to demonstrate the next playbooks.
 3. Call `ansible-playbook -i inventories/test -u vagrant deploy-docker-container.yml` for deploying Docker container with plain Ansible.
 3. Call `ansible-playbook -i inventories/test -u vagrant deploy-docker-container-compose.yml` for deploying Docker container with Ansible and Docker Compose.
+
+### Java Webapplication Example (java-web)
+Here is the source code of the sample web application. It's the application for the deployment samples and it demonstrates how we can use Docker container in our integration tests integrated in the build. For this Testcontainers is used. Ensure that a Docker Daemon (dockerd) runs your machine.
+
+<!-- The test class `DbMigrationITest` demonstates the integration of a Docker container in our test. -->
