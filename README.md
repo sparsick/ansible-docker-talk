@@ -3,7 +3,7 @@ You can find here the slides and the sample code of my talk "Muss es immer Docke
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.3.0.0, Docker 17.04.0-ce and Docker Compose 1.11.2.
+The code samples are tested with Ansible 2.3.0.0, Serverspec 2.40.0, Docker 17.04.0-ce and Docker Compose 1.11.2.
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
@@ -24,6 +24,12 @@ There exists three playbooks for setting up a database, installing Apache Tomcat
 2. Call `ansible-playbook -i inventories/test -u vagrant setup-db.yml` for setting up the database.
 3. Call `ansible-playbook -i inventories/test -u vagrant setup-app.yml` for installing Apache Tomcat.
 4. Call `ansible-playbook -i inventories/test -u vagrant deploy-demo.yml` for deploying demo wep appp on an installed Apache Tomcat.
+
+#### Run Serverspec Tests For Ansible Setup Playbooks (plain-ansible)
+The Serverspec tests are stored in the folder `plain-ansible/spec/ansible_demo`. To run the test, execute following steps:
+
+1. Go to folder `plain-ansible`
+2. Call `rake spec`
 
 ### Docker Image Build with Ansible (docker-image-ansible)
 These examples shows how Ansible playbooks can reuse for Docke image builds.
