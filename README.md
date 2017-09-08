@@ -1,9 +1,9 @@
 # anible-docker-talk
-You can find here the slides and the sample code of my talk "Muss es immer Docker sein?" that I presented on Java Forum Stuttgart at 6th July 2017.
+You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on Herbstcampus in Nuremberg at 7th September 2017.
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.3.0.0, Serverspec 2.40.0, Docker 17.04.0-ce and Docker Compose 1.11.2.
+The code samples are tested with Ansible 2.3.2.0, Serverspec 2.40.0, Docker 17.05.0-ce and Docker Compose 1.11.2.
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
