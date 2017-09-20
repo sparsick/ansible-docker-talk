@@ -1,0 +1,16 @@
+version: '3'
+services:
+  database:
+    build:
+      context: .
+      dockerfile: mysql.df
+  tomcat:
+    build:
+      context: .
+      dockerfile: tomcat.df
+    ports:
+     - "8080:8080"
+    links:
+     - database
+    volumes:
+     - ./plain-ansible/demo-web-application-1.war:/opt/tomcat/webapps/demo.war

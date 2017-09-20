@@ -3,7 +3,7 @@ You can find here the slides and the sample code of my talk "Es muss nicht immer
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.3.2.0, Serverspec 2.40.0, Docker 17.05.0-ce and Docker Compose 1.11.2.
+The code samples are tested with Ansible 2.3.2.0, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
@@ -38,7 +38,8 @@ These examples shows how Ansible playbooks can reuse for Docke image builds.
 2. Run shell script `buildAll.sh` for building Docker images (tomcat.df and mysql.df) that include Ansible commands in `RUN`.
 3. Run shell script `runAll.sh` for running Docker container based on images tomcat.df and mysql.df.
 4. Run shell script `stop.sh` for stopping the container.
-5. Call `docker-compose up` for running the Docker container with `docker-compose.yml`.
+5. Call `docker-compose up` for running the Docker container based on Docker images (see `docker-compose.yml`).
+6. Call `docker-compose -f docker-compose-build.yml up` for running the Docker container based on Dockerfiles (see `docker-compose-build.yml`).
 
 
 ### Docker Image Lifecycle with Ansible (docker-image-lifecycle)
