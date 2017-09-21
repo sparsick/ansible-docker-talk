@@ -1,4 +1,4 @@
-# anible-docker-talk
+# ansible-docker-talk
 You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on Herbstcampus in Nuremberg at 7th September 2017.
 
 
@@ -6,11 +6,11 @@ You can find here the slides and the sample code of my talk "Es muss nicht immer
 The code samples are tested with Ansible 2.3.2.0, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
 
 ### Setup Test Infrastructure
-I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. Then follow these steps:
+I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. It is tested with Vagrant 2.0.0 . Then follow these steps:
 
 1. Open a CLI and go to the location of the file `Vagrantfile`.
 2. Call `vagrant up`. Vagrant will download the necessary image for VirtualBox. That will take some times.
-3. Then copy your public key for the authentication that is needed for a SSH login.
+3. Then copy your public key for the authentication that is needed for a SSH login. The password for the user `vagrant` is `vagrant`.
 ```
 ssh-copy-id -i ~/.ssh/id_rsa vagrant@192.168.33.10
 ```

@@ -11,13 +11,15 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "boxcutter/ubuntu1604-i386"
-  
+  # boxes at https://app.vagrantup.com/boxes/searchhttps://app.vagrantup.com/boxes/search.
+  config.vm.box = "boxcutter/ubuntu1604"
+  config.vm.box_version = "17.0907.1"
+
+
   # set an unique machine name
   config.vm.define :ansible_demo do |t|
   end
-  
+
   config.vm.hostname = "database"
 
   # Disable automatic box update checking. If you disable this, then
@@ -56,13 +58,13 @@ Vagrant.configure(2) do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
-  
+
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
-  
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.

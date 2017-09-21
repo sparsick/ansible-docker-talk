@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "boxcutter/ubuntu1604"
+  config.vm.box_version = "17.0907.1"
 
   # set an unique machine name
   config.vm.define :docker_container_ansible do |t|
