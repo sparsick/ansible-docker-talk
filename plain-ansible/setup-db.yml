@@ -1,16 +1,17 @@
 - hosts: database-server
   become: yes
   become_method: sudo
-    
-  tasks:    
+
+  tasks:
     - name: install mysql db
       apt: name=mysql-server state=present
-      
+
     - name: installs python-mysqldb
       apt: name=python-mysqldb state=present
-  
+
     - name: start mysql
-      service: name=mysql state=started
+      # service: name=mysql state=started
+      command: /etc/init.d/mysql start
 
     - name: set bind address
       lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf
@@ -18,11 +19,10 @@
         state=present
         regexp=^bind-address(.*)
       notify: restart mysql
-      
+
     - name: creates db user dba
       mysql_user: name=flyway password=flyway priv=*.*:ALL,GRANT state=present host=%
-      
+
   handlers:
      - name: restart mysql
-       service: name=mysql state=restarted 
- 
+       service: name=mysql state=restarted
