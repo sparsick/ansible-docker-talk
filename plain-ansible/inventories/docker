@@ -1,0 +1,7 @@
+# inventories/docker
+
+[database-server]
+database ansible_connection=docker
+
+[application-server]
+tomcat ansible_connection=docker

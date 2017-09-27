@@ -1,0 +1,18 @@
+version: '3'
+services:
+  database:
+    image: "sparsick/mysql:ansibledocker"
+    entrypoint: "/usr/bin/mysqld_safe"
+    expose:
+      - 3306
+  tomcat:
+    image: sparsick/tomcat:ansibledocker
+    entrypoint: "/opt/tomcat/bin/catalina.sh"
+    command: run
+    working_dir: "/opt/tomcat"
+    ports:
+     - "8080:8080"
+    links:
+     - database
+    volumes:
+     - ./plain-ansible/demo-web-application-1.war:/opt/tomcat/webapps/demo.war

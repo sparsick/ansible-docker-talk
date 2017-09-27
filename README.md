@@ -3,7 +3,7 @@ You can find here the slides and the sample code of my talk "Es muss nicht immer
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.4.0.0, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
+The code samples are tested with Ansible 2.4.0.0, Ansible Container 0.9.2, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. It is tested with Vagrant 2.0.0 . Then follow these steps:
@@ -34,17 +34,18 @@ The Serverspec tests are stored in the folder `plain-ansible/spec/ansible_demo`.
 2. Call `rake spec`
 
 ### Docker Image Build with Ansible (docker-image-ansible)
-These examples shows how Ansible playbooks can reuse for Docke image builds.
+These examples shows how Ansible playbooks can reuse for Docker image builds.
 
 1. Go to the folder `docker-image-ansible`.
-2. Run shell script `buildAll.sh` for building Docker images (tomcat.df and mysql.df) that include Ansible commands in `RUN`.
-3. Run shell script `runAll.sh` for running Docker container based on images tomcat.df and mysql.df.
+2. Run shell script `buildAll.sh` for building Docker images based on Dockerfiles (tomcat.df and mysql.df) that include Ansible commands in `RUN`.
+3. Run shell script `buildDockerConnection.sh` for building Docker images based on Docker file python-plain.df and Ansible Connection type _docker_ .
+3. Run shell script `runAll.sh` for running Docker container based on images from Docker files tomcat.df and mysql.df.
 4. Run shell script `stop.sh` for stopping the container.
-5. Call `docker-compose up` for running the Docker container based on Docker images built with Ansible (see `docker-compose.yml`).
+5. Call `docker-compose -f docker-compose-ansible.yml up` for running the Docker container based on Docker images built with using Ansible during the image build (see `docker-compose-ansible.yml`).
+5. Call `docker-compose -f docker-compose-ansibledocker.yml up` for running the Docker container based on Docker images built with Ansible over connection type docker (see `docker-compose-ansibledocker.yml`).
 6. Call `docker-compose -f docker-compose-build.yml up` for running the Docker container based on Dockerfiles with Ansible playbooks (see `docker-compose-build.yml`)
 
 After starting the containers, the demo webapplication is available on http://localhost:8080/demo.
-
 
 ### Docker Image Lifecycle with Ansible (docker-image-lifecycle)
 Precondition:
