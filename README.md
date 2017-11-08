@@ -1,9 +1,9 @@
 # ansible-docker-talk
-You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on JUG Saxony Day in Dresden at 29th September 2017.
+You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on W-JAX in Munich at 8th November 2017.
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.4.0.0, Ansible Container 0.9.2, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
+The code samples are tested with Ansible 2.4.0.0, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. It is tested with Vagrant 2.0.0 . Then follow these steps:
@@ -60,20 +60,6 @@ These examples shows how to manage the Docker image lifecycle with Ansible playb
 3. Call `ansible-playbook build-and-push-images.yml --extra-vars "registry_hostname=localhost"` for building the images of the last example and pushing these images to docker registry.
 4. You can test if the images are in the registry with `docker pull localhost:5000/sparsick/tomcat:plain` or `curl -s http://localhost:5000/v2/sparsick/tomcat/tags/list`
 5. Run shell script `stop-docker-registry.sh` for stopping docker registry.
-
-### Docker Container Lifecylce with Ansible (docker-container-ansible)
-These examples show how to install Docker, Docker Compose and Docker registry with Ansible playbooks and how to deploy Docker container with Ansible playbooks.
-
-1. Go to folder `docker-container-ansible`.
-2. Start a virtual machine with `vagrant up`. Dont't forget to copy the ssh id.
-3. Add `192.168.33.11:5000` to your unsecured registry list and restart your Docker service.
-2. Call `ansible-playbook -i inventories/test -u vagrant setup-dockerd.yml` for installing Docker and Docker Compose.
-3. Call `ansible-playbook -i inventories/test -u vagrant setup-docker-registry.yml` for installing Docker registry.
-4. Call `ansible-playbook -i inventories/test -u vagrant ../docker-image-lifecycle/build-and-push-images.yml --extra-vars "registry_hostname=192.168.33.11"` for pushing images to Docker registry to demonstrate the next playbooks.
-3. Call `ansible-playbook -i inventories/test -u vagrant deploy-docker-container.yml` for deploying Docker container with plain Ansible.
-3. Call `ansible-playbook -i inventories/test -u vagrant deploy-docker-container-compose.yml` for deploying Docker container with Ansible and Docker Compose. (Be sure no container runs on the target host)
-
-After starting the containers, the demo web application is available on http://192.168.33.11:8080 .
 
 ### Java Webapplication Example (java-web)
 Here is the source code of the sample web application. It's the application for the deployment samples and it demonstrates how we can use Docker container in our integration tests integrated in the build. For this Testcontainers is used. Ensure that a Docker Daemon (dockerd) runs your machine.
