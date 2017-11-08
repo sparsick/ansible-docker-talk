@@ -1,0 +1,17 @@
+---
+# tasks file for mysql
+  - name: install mysql db
+    apt: name=mysql-server state=present update_cache=yes
+
+  - name: start mysql
+    # service: name=mysql state=started
+    command: /etc/init.d/mysql start
+
+  - name: set bind address
+    lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf
+      line='bind-address = 0.0.0.0'
+      state=present
+      regexp=^bind-address(.*)
+
+  - name: creates db user dba
+    mysql_user: name=flyway password=flyway priv=*.*:ALL,GRANT state=present host=%

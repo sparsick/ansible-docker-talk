@@ -1,0 +1,4 @@
+---
+# vars file for tomcat
+tomcat_version: 8.5.12
+tomcat_base_name: apache-tomcat-{{ tomcat_version }}
