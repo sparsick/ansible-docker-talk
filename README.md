@@ -1,5 +1,5 @@
 # ansible-docker-talk
-You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on W-JAX in Munich at 8th November 2017.
+You can find here the slides and the sample code of my talk "Es muss nicht immer gleich Docker sein:IT Automation, die zu einem passt" that I presented on Continuous Lifecycle in Mannheim at 15th November 2017.
 
 
 ## Running the Code Samples
