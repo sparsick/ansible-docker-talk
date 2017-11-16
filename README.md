@@ -3,7 +3,7 @@ You can find here the slides and the sample code of my talk "Es muss nicht immer
 
 
 ## Running the Code Samples
-The code samples are tested with Ansible 2.4.0.0, Ansible Container 0.9.2, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
+The code samples are tested with Ansible 2.4.0.0, Serverspec 2.40.0, Docker 17.06.2-ce and Docker Compose 1.16.1
 
 ### Setup Test Infrastructure
 I prepare some Vagrantfiles for the setup of the test infrastructure if necessary. The only prerequires are that you have to install VirtualBox and Vagrant on your machine. It is tested with Vagrant 2.0.0 . Then follow these steps:
