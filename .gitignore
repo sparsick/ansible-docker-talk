@@ -1,4 +1,5 @@
-/java-webapp/target/
+target/
 *.retry
+*.iml
 .vagrant/
 /java-webapp/nbproject/
