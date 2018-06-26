@@ -1,6 +1,9 @@
 
 import java.util.Vector;
 
+/**
+* This example bases on this blog post https://banzaicloud.com/blog/java-resource-limits/
+**/
 public class MemoryConsumer {
 
     private static float CAP = 0.8f;  // 80%

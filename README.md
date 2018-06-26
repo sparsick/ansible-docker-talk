@@ -61,6 +61,70 @@ These examples shows how to manage the Docker image lifecycle with Ansible playb
 4. You can test if the images are in the registry with `docker pull localhost:5000/sparsick/tomcat:plain` or `curl -s http://localhost:5000/v2/sparsick/tomcat/tags/list`
 5. Run shell script `stop-docker-registry.sh` for stopping docker registry.
 
+### Docker and Java (docker-java)
+This example bases on this [blog post](https://banzaicloud.com/blog/java-resource-limits/).
+The multi-module Maven project produces a small Java application that consumes memory and two Docker images with this application.
+
+One Docker image bases Java 8 and the other bases on Java 10.
+
+Following commands demonstrate Java's memory behaviour:
+
+```shell
+# Jar Running Outside Docker
+
+$> java -jar memory-consumer-1.0-SNAPSHOT.jar
+Initial free memory: 4332MB
+Max memory: 4336MB
+Reserve: 2047MB
+Free memory: 2288MB
+
+#Jar Running inside Docker
+#Note: cgroup capabilties must be enabled
+
+$> docker run sparsick/docker-java8-demo
+Initial free memory: 4334MB
+Max memory: 4336MB
+Reserve: 2047MB
+Free memory: 2287MB
+
+
+$> docker run -m256M sparsick/docker-java8-demo
+Initial free memory: 4334MB
+Max memory: 4336MB
+Reserve: 2047MB
+Killed
+
+
+$> docker run -m256M -e JAVA_OPT='-Xms64M -Xmx256M' sparsick/docker-java8-demo
+Initial free memory: 227MB
+Max memory: 228MB
+Reserve: 181MB
+Free memory: 48MB
+
+#For JDK 8u131+ and JDK 9
+$> docker run -m256M -e JAVA_OPT='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1' sparsick/docker-java8-demo
+Initial free memory: 227MB
+Max memory: 228MB
+Reserve: 182MB
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+        at MemoryConsumer.main(MemoryConsumer.java:27)
+
+
+$> docker run -m256M -e JAVA_OPT='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -Xms64M' sparsick/docker-java8-demo
+Initial free memory: 227MB
+Max memory: 228MB
+Reserve: 181MB
+Free memory: 50MB
+
+# Java 10
+$> docker run -m256M -e sparsick/docker-java10-demo
+Initial free memory: 120MB
+Max memory: 121MB
+Reserve: 96MB
+Free memory: 24MB
+
+```
+
 ### Java Webapplication Example (java-web)
 Here is the source code of the sample web application. It's the application for the deployment samples and it demonstrates how we can use Docker container in our integration tests integrated in the build. For this Testcontainers is used. Ensure that a Docker Daemon (dockerd) runs your machine.
 
