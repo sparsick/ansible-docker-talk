@@ -4,7 +4,9 @@ import static org.junit.Assert.assertThat;
 
 import com.github.sparsick.ansible.docker.demo.webapp.domain.Person;
 import java.util.List;
+import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.hamcrest.core.Is;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,11 +23,13 @@ public class PersonRepositoryITest {
 
     @Test
     public void saveAndLoadAPerson() {
-        Flyway flyway = new Flyway();
-        flyway.setDataSource(mysqlDb.getJdbcUrl(), mysqlDb.getUsername(), mysqlDb.getPassword());
+        FluentConfiguration dbConfig = Flyway.configure()
+                .dataSource(mysqlDb.getJdbcUrl(), mysqlDb.getUsername(), mysqlDb.getPassword());
+        Flyway flyway = new Flyway(dbConfig);
         flyway.migrate();
         
-        PersonRepository personRepositoryUnderTest = new PersonRepository(flyway.getDataSource());
+        DataSource dataSource = flyway.getConfiguration().getDataSource();
+        PersonRepository personRepositoryUnderTest = new PersonRepository(dataSource);
         Person person = new Person("Alice", "Bob");
         personRepositoryUnderTest.save(person);
         
