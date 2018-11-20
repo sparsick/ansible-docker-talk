@@ -8,21 +8,21 @@ import java.util.List;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.apache.wicket.util.tester.WicketTester;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Simple test using the WicketTester
  */
-public class TestHomePage {
+class TestHomePage {
 
     private WicketTester tester;
 
     private ApplicationContextMock applicationContextMock;
 
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         applicationContextMock = new ApplicationContextMock();
         WicketApplication wicketApp = new WicketApplication();
         wicketApp.getComponentInstantiationListeners()
@@ -40,7 +40,7 @@ public class TestHomePage {
 
 
     @Test
-    public void homepageRendersSuccessfully() {
+    void homepageRendersSuccessfully() {
         // start and render the test page
         tester.startPage(HomePage.class);
 

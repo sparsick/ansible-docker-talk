@@ -2,21 +2,24 @@ package db.migration;
 
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 /**
  *
  * @author sparsick
  */
-public class DbMigrationITest {
+@Testcontainers
+class DbMigrationITest {
 
-    @Rule
-    public MySQLContainer mysqlDb = new MySQLContainer();
+    @Container
+    private MySQLContainer mysqlDb = new MySQLContainer();
 
     @Test
-    public void testDbMigrationFromTheScratch() {
+    void testDbMigrationFromTheScratch() {
         FluentConfiguration dbConfig = Flyway.configure()
                 .dataSource(mysqlDb.getJdbcUrl(), mysqlDb.getUsername(), mysqlDb.getPassword());
         Flyway flyway = new Flyway(dbConfig);

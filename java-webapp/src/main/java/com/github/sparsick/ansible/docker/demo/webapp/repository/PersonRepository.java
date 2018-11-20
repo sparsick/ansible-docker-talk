@@ -57,7 +57,7 @@ public class PersonRepository {
 
     private void checkJdbcDriver() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
             throw new RuntimeException("Cannot load JDBC driver", ex);
         }

@@ -8,21 +8,24 @@ import javax.sql.DataSource;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.hamcrest.core.Is;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 /**
  *
  * @author sparsick
  */
-public class PersonRepositoryITest {
+@Testcontainers
+class PersonRepositoryITest {
 
-    @Rule
-    public MySQLContainer mysqlDb = new MySQLContainer();
+    @Container
+    private MySQLContainer mysqlDb = new MySQLContainer();
 
     @Test
-    public void saveAndLoadAPerson() {
+    void saveAndLoadAPerson() {
         FluentConfiguration dbConfig = Flyway.configure()
                 .dataSource(mysqlDb.getJdbcUrl(), mysqlDb.getUsername(), mysqlDb.getPassword());
         Flyway flyway = new Flyway(dbConfig);
