@@ -1,3 +1,5 @@
+⚠️ **This repository is moved to https://codeberg.org/sparsick/ansible-docker-talk** ⚠️
+
 # ansible-docker-talk
 You can find here the slides and the sample code of my talk "Es muss nicht gleich Docker sein - IT Automation, die zu einem passt" that I presented on "JUG Münster" in Münster at 21st November 2018.
 
